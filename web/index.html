@@ -5,9 +5,14 @@
         <title>Click farming node: {{ .Name }}</title>
         <link rel="stylesheet" href="static/styles.css">
         <script src="static/script.js"></script>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
     </head>
 
     <body>
+        <!--
+
+       
         <h1>Click farming node: {{ .Name  }}</h1>
 
         <h2>Current click counts:<h2>
@@ -22,6 +27,24 @@
         <div class="color-button color-button-{{ $color }}"
             onclick="colorClicked('{{ $color  }}')">{{ $color}}</div>
         {{ end }}
-    </body>
+         -->
+        <h1>Click farming node: {{ .Name  }}</h1>
 
-</html>
+        <h2>Current click counts:<h2>
+        <ul>
+        {{ range $color := .Colors }}
+        <li class="color-label" id="color-label-{{ $color }}">{{ $color }}: 0</li>
+        {{ end }}
+        </ul>
+
+        <h2>Help us farm more clicks:<h2>
+        <div class = button-container>
+            {{ range $color := .Colors }}
+            <button onclick="colorClicked('{{ $color  }}')">
+                <span class="shadow"></span>
+                <span class="color-edge-{{ $color }}"></span>
+                <span class="front text"> {{ $color}} </span>
+            </button>
+        </div>
+        {{ end }}
+    </body>
