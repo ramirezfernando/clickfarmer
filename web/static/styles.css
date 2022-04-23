@@ -2,28 +2,113 @@
     --red: #e84118;
     --green: #2ecc71;
     --blue: #014aff;
+    --light-grey: #f3f5f8;
+    --white: #ffffff;
 }
 
-html {
+@media only screen and (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: 500px 500px !important;
+      }
+      body {
+        margin-top: 3rem !important;
+    }
+  }
+  
+  @media only screen and (max-width: 1000px) {
+    .grid-container {
+        grid-template-columns: 600px !important;
+      }
+    .color-button {
+        height: 75px !important;
+        width: 200px !important;
+    }
+    body {
+        margin-top: 5rem !important;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .grid-container {
+        grid-template-columns: 400px !important;
+      }
+
+      body {
+        margin-top: 5px !important;
+    }
+  }
+  @media only screen and (max-width: 300px) {
+    .grid-container {
+        grid-template-columns: 275px !important;
+      }
+      .color-button {
+        height: 50px !important;
+        width: 100px !important;
+        font-size: large !important;    
+
+      }
+      body {
+        margin-top: 5px !important;
+    }
+  }
+  @media only screen and (max-width: 200px) {
+    .grid-container {
+        grid-template-columns: 100px !important;
+      }
+      .color-button {
+        height: 50px !important;
+        width: 100px !important;
+      }
+      body {
+        margin-top: 5px !important;
+    }
+  }
+
+
+body {
     height: 100%;
     width: 100%;
-    font-family: "Poppins", sans-serif;
-    place-items: center;
-    background: linear-gradient(315deg, #ffffff, #d7e1ec);
+    font-family: "Arial", sans-serif;
+    background-color: var(--white);
+    place-self: center;
+    margin-top: 10rem;
 }
 
 h1, h2 {
     text-align: center;
 }
 
-ul li {
-    list-style: none;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 600px 600px ;
+    padding: 10px;
+    margin: 10px;
+
+    justify-content: center;
+    align-content: center;
+
+  }
+
+  .grid-item {
+    display: block;
+    background-color: var(--light-grey);
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 16px;
+
+  }
+
+.current-clicks {
+    text-align: center;
 }
-.color-label {
+
+.current-clicks .color-label {
     font-weight: heavy;
     -webkit-transition: color 1s;
     transition: color 1s;
 }
+
 #color-label-red:hover {
     color: var(--red);
 }
@@ -36,6 +121,7 @@ ul li {
 
 .button-container {
     flex-direction: column;
+    background-color: var(--light-grey);
 }
 
 .color-button {
@@ -48,6 +134,7 @@ ul li {
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
+    font-size: larger;    
     margin: 0 auto 20px;
     border-radius: 16px;
     cursor: pointer;
@@ -63,6 +150,3 @@ ul li {
 #color-button-blue {
     background-color: var(--blue);
 }
-
-
-
