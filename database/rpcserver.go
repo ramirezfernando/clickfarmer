@@ -57,5 +57,8 @@ func (s *ClickFarmerDatabase) SetClicks(ctx context.Context, r *pb.SetClicksRequ
 	defer s.mu.Unlock()
 
 	// TODO
-	return &pb.SetClicksResponse{}, nil
+	// Maybe adjust clickfarmer.proto and re-generate protobuf code
+	return &pb.SetClicksResponse{
+		
+	}, nil
 }

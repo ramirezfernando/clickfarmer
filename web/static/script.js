@@ -1,74 +1,59 @@
+
+/*
+api/clicks Content-Type: application/json
+api/clicks/${color} Content-Type: text/plain
+*/
+
 window.addEventListener('load', function () {
     updateClickLabels();
-})
+});
+
 
 function colorClicked(color) {
+    //setInterval(5000);
     console.log("color clicked", color);
     // hmm    
-    // In PUT request body, do GET request and add 1
-
+    // In PUT request body, do GET request to get current clicks and add 1
     putColor(color);
-    //colorGET(color);
-}
-
-function putColor(color) {
-    let link = `/api/clicks/${color}`;
-    
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // GET request and add 1
-            var response = this.responseText + getColor(color);
-            //console.log(response);
-            //console.log(xhttp.responseText);
-        }
-    };
-
-    xhttp.open("PUT", link, true);
-    xhttp.send();
-
     updateClickLabels();
-}
+};
 
-function getColor(color) {
+
+async function putColor(color) {
     let link = `/api/clicks/${color}`;
-    
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // GET request and add 1
-            let response = this.responseText;
-            //console.log(response);
-            x = xhttp.response;
-            return x;
+    let currenColorClicks = await getColor(color);
+    var data = currenColorClicks.toString();
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", link, true);
+    xhttp.setRequestHeader('Content-type','text/plain');
+    xhttp.onreadystatechange = function () {
+        console.log(xhttp.readyState);
+        if (xhttp.readyState == 4 && xhttp.status == "200") {
+            console.log(xhttp.responseText);
+        } else {
+            console.log("Error");
         }
     };
+    xhttp.send(data);
+};
 
-    xhttp.open("GET", link, true);
-    xhttp.send();
 
-}
-/*
-function getColor(color) {
+async function getColor(color){
+    let myData
     let link = `/api/clicks/${color}`;
-    let xhttp = new XMLHttpRequest();
-    
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-        }
-    };
-
-    xhttp.open("GET", link, true);
-    xhttp.send();
-
-    return response;
-}
-*/
+    await fetch(link)
+      .then(response => response.text())
+      .then(data => myData = data)
+    //alert(parseInt(myData)+1)
+    return (parseInt(myData)+1)
+};
 
 
 function updateClickLabels() {
     var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/api/clicks", true);
+
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
@@ -77,7 +62,6 @@ function updateClickLabels() {
             document.getElementById("color-label-blue").innerHTML = "blue: " + response.blueClicks
         }
     };
-    xhttp.open("GET", "/api/clicks", true);
     xhttp.send();
 }
 

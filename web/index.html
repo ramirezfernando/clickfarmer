@@ -28,7 +28,7 @@
                 <h2>Help us farm more clicks!<h2>
                 <div class = button-container>
                     {{ range $color := .Colors }}
-                    <button class="color-button" id="color-button-{{ $color }}" onclick="colorClicked('{{ $color  }}')" {{ $color}}> {{ $color }} </button>
+                    <button class="color-button" id="color-button-{{ $color }}" onclick="colorClicked('{{ $color  }}')" {{ $color }}> {{ $color }} </button>
                     {{ end }}
                 </div>   
             </div>

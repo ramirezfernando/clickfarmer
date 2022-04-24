@@ -8,7 +8,7 @@ package clickfarmer;
 
 service ClickFarmer {
     rpc GetClicks(GetClicksRequest) returns (GetClicksResponse) {}
-    rpc SetClicks(SetClicksRequest) returns (SetClicksResponse) {}
+    rpc SetClicks(SetClicksRequest) returns (SetClicksResponse) {} 
 }
 
 message ClickCounts {
